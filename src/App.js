@@ -1,10 +1,12 @@
 import './App.css';
-import { EntrancePage } from './Pages/EntrancePage/EntrancePage';
+import { MainPage } from './Pages/MainPage/MainPage';
+// import { EntrancePage } from './Pages/EntrancePage/EntrancePage';
 
 function App() {
   return (
     <div>
-      <EntrancePage/>
+      {/* <EntrancePage/> */}
+      <MainPage/>
     </div>
   );
 }
