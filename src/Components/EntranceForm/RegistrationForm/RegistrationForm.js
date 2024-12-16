@@ -11,12 +11,12 @@ export function RegistrationForm() {
   const isDisabled = login === '' || password === '';
 
   return(
-    <div>
+    <form>
       <div className={styles.text}>Заполните форму для регистрации.</div>
       <FieldForInput signField={'Логин'} type={'text'} login={login} setLogin={setLogin}/>
       <FieldForInputPassword signField={'Пароль'} password={password} setPassword={setPassword}/>
       <FieldForInputPassword signField={'Подтвердите пароль'} password={passwordConfirm} setPassword={setPasswordConfirm}/>
-      <ButtonAcceptForm text={'Подтвердить регистрацию'} isDisabled={isDisabled}/>
-    </div>
+      <ButtonAcceptForm type={'submit'} text={'Подтвердить регистрацию'} isDisabled={isDisabled}/>
+    </form>
   );
 }
