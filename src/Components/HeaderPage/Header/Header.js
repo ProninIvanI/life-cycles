@@ -8,7 +8,7 @@ export function Header() {
     <div className={styles.header}>
       <div className={styles.leftPartHeader}>
         <Logo/>
-        <ButtonMenu text={'кнопка меню'}/>
+        <ButtonMenu text={'меню'}/>
         <ButtonMenu text={'меню'}/>
       </div>
       <div className={styles.rightPartHeader}>

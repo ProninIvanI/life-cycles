@@ -1,45 +1,38 @@
+import { DataContainerHealth } from '../DataContainerHealth/DataContainerHealth';
+import { DataContainerSocial } from '../DataContainerSocial/DataContainerSocial';
 import styles from './InformationBlock.module.css'
 import { useSelector } from "react-redux";
 
 export function InformationBlock() {
   const dataUser = useSelector((state) => state.user.data);
 
-  // Проверка наличия данных
   if (!dataUser) {
-    return <div>Загрузка данных...</div>;
+    return(
+      <div className={styles.container}>
+        <div className={styles.headerDataContainer}>загрузка...</div>
+      </div>
+    );
   }
-
+  
   return (
     <div className={styles.container}>
-      <div className={styles.miniContainer}>Информация о пользователе</div>
-      <div>
-        <h3>Пользовательская информация:</h3>
-        <div>Email: {dataUser.userInfo.email}</div>
-        <div>Имя: {dataUser.userInfo.name}</div>
+      <div className={styles.headerDataContainer}>Данные о здоровье</div>
+      <div className={styles.dataContainer}>
+        <DataContainerHealth text={'Активные минуты:' } data={dataUser.healthData.activeMinutes}/>
+        <DataContainerHealth text={'Калории:' } data={dataUser.healthData.calories}/>
+        <DataContainerHealth text={'Сердечный ритм:' } data={dataUser.healthData.heartRate}/>
+        <DataContainerHealth text={'Шаги:' } data={dataUser.healthData.steps}/>
+        <DataContainerHealth text={'Расстояние:' } data={dataUser.healthData.distance}/>
       </div>
 
-      <div>
-        <h3>Данные о здоровье:</h3>
-        <div>Активные минуты: {dataUser.healthData.activeMinutes}</div>
-        <div>Калории: {dataUser.healthData.calories}</div>
-        <div>Сердечный ритм: {dataUser.healthData.heartRate}</div>
-        <div>Шаги: {dataUser.healthData.steps}</div>
-        <div>Расстояние: {dataUser.healthData.distance}</div>
+      <div className={styles.headerDataContainer}>Социальные данные</div>
+      <div className={styles.dataContainer}>
+        <DataContainerSocial text={'Использованные приложения:' } data={dataUser.appUsage} textNoData={'Нет данных о использовании приложений.'}/>
+        <DataContainerSocial text={'Звонки:' } data={dataUser.callLogs} textNoData={'Нет данных о звоках.'}/>
+        <DataContainerSocial text={'Контакты:' } data={dataUser.contacts} textNoData={'Нет данных о контактах.'}/>
+        <DataContainerSocial text={'Контакты:' } data={dataUser.notifications} textNoData={'Нет данных об уведомлениях.'}/>
+        <DataContainerSocial text={'Контакты:' } data={dataUser.sms} textNoData={'Нет данных о SMS.'}/>
       </div>
-
-      {/* Отображение других данных */}
-      <div>
-        <h3>История калорий:</h3>
-        {dataUser.healthData.caloriesHistory.length > 0 ? (
-          dataUser.healthData.caloriesHistory.map((calorie, index) => (
-            <div key={index}>Калории на день {index + 1}: {calorie}</div>
-          ))
-        ) : (
-          <div>Нет данных о калориях</div>
-        )}
-      </div>
-
-      {/* Другие массивы можно обрабатывать аналогично */}
     </div>
   );
 }
